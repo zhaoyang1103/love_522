@@ -2,6 +2,8 @@ package com.example.love_activity;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
@@ -10,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.InputStream;
 
@@ -69,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         ObjectAnimator pingyi = ObjectAnimator.ofFloat(imageView, "translationX", 0, 50, 0);
 
         pingyi.setDuration(500);
-
         pingyi.start();
         objectAnimator_scaleY.setDuration(500);
         objectAnimator_scaleY.start();
@@ -100,6 +102,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         builder.setView(view);
+
+
+        builder.setPositiveButton("进入新游戏", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                Toast.makeText(MainActivity.this, "进入到第二种游戏模式", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+
+            }
+        });
+        builder.setNegativeButton("退出程序", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
         builder.show();
 
 
