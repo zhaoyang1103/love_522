@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:background="#03A9F4"
-        android:text="爱你噢 522纪念"
+        android:text="@string/showname"
         android:textColor="#000"
         android:textSize="25dp" />
 </RelativeLayout>

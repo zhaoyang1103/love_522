@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import com.example.love_activity.st_test.OnAction;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -20,6 +21,7 @@ import java.util.Random;
  */
 public class ImageGlideViewSt extends LinearLayout implements OnAction {
 
+    private ArrayList<ImageView> imageViews_list = new ArrayList<>();
 
     public ImageGlideViewSt(Context context) {
         super(context);
@@ -47,15 +49,15 @@ public class ImageGlideViewSt extends LinearLayout implements OnAction {
 
 
     public void showImage(int count) {
-        final Random random=new Random();
+        final Random random = new Random();
         setOrientation(VERTICAL);
         for (int i = 0; i < count; i++) {
             final LinearLayout linearLayout = new LinearLayout(getContext());
             addView(linearLayout);
-            for (int j = 0; j <  FinAll.image_all; j++) {
+            for (int j = 0; j < FinAll.image_all; j++) {
                 final ImageView imageView = new ImageView(getContext());
                 imageView.setImageBitmap(readBitMap(getContext(), R.drawable.taoxin));
-
+                imageViews_list.add(imageView);
                 linearLayout.addView(imageView);
 //                scal(imageView);
                 final int finalJ = j;
@@ -78,9 +80,22 @@ public class ImageGlideViewSt extends LinearLayout implements OnAction {
 //                        int load = soundPool.load(getContext(), R.raw.pp, 1);
 //                        soundPool.play(load, 1, 1, 0, 0, 1);
 
-
                         normol(imageView);
 
+                    }
+                });
+                imageView.setOnLongClickListener(new OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        for (int k = 0; k < FinAll.show_all; k++) {
+                            int i1 = random.nextInt(imageViews_list.size());
+                         ;
+                            imageViews_list.get(i1).setImageBitmap(readBitMap(getContext(), image[random.nextInt(image.length)]));
+                            normol( imageViews_list.get(i1));
+                        }
+
+
+                        return false;
                     }
                 });
 
